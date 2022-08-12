@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;">
+    <link href="./index.css" rel="stylesheet">
+    <title id="title">Where in Elden Ring</title>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.8.0/dist/leaflet-src.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.8.0/dist/leaflet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <img src="./assets/wallpaper.jpg" id="background" alt="logo"/>
+    <img src="./assets/wallpaperGameOver.jpg" id="backgroundGameOver" alt="logo"/>
+
+    <div class="ruban" style="top: 0; left: 0; position: absolute">
+      <span class="h3" id="round">Round: 1</span>
+      <span class="h3" id="accuracy">Accuracy: 0%</span>
+      <span class="h3" id="liveRemaining">Live Remaining : 3</span>
+    </div>
+
+    <div id="map" class="playContainer">
+      <span id="mousePosition">x: 0 y: 0</span>
+      <div class="bottomFlex">
+        <div id="bottomButtons">
+          <button id="review" class="button">
+            <span class="h3">Review location</span>
+          </button>
+          <button id="guess" class="button">
+            <span class="h3">Confirm Guess</span>
+          </button>
+          <button id="next" class="button">
+            <span class="h3">Next Round</span>
+          </button>
+        </div>
+        <div id="nameContainer">
+          <div id="nameLocation">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="image" class="playContainer">
+      <img src="./assets/screen/screen3.jpg" id="screen" alt="logo"/>
+      <div class="bottomFlex">
+        <div id="loadingContent">
+          <img src="./assets/logo.png" id="loading" alt="logo"/>
+        </div>
+        <div id="bottomButtons" style="justify-content: space-between">
+          <button id="makeGuess" class="button">
+            <span class="h3">Make Guess</span>
+          </button>
+          <button id="leaderbord" class="button">
+            <span class="h3">Leaderbord</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameOver" class="gameOverContainer">
+      <br/>
+      <br/>
+      <h1>Game Over</h1>
+      <br/>
+      <h4 id="gameOverRound">You successfully complete 0 rounds</h4>
+      <h4 id="gameOverAccuracy">Your accuracy was 0%</h4>
+      <br/>
+      <br/>
+      <div style="display: flex; flex-direction: row; height: 50%;">
+        <button id="playAgain" class="button">
+          <span class="h3">Play Again</span>
+        </button>
+        <button id="submit" class="button">
+          <span class="h3">Submit Score</span>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="ruban" style="bottom: 0; left: 0; position: absolute">
+      <span class="h4">inspired by where in warcraft</span>
+    </div>
+
+  </body>
+  <script src="handler.js"></script>
+</html>
