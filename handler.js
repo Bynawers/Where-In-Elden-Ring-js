@@ -35,8 +35,9 @@ map.setView([0, 0], -3);
 
 $('#nameLocation').hide();
 $('#map').hide();
-$('#image').show();
+$('#image').hide();
 $('#gameOver').hide();
+$('.ruban').hide();
 
 start();
 
@@ -94,9 +95,10 @@ function degrant_privileges() {
 }
 
 $('#play').click(function() {
-  $('#map').show();
-  $('#menu').hide();
   $('.ruban').show();
+  $('#image').show();
+  $('#map').hide();
+  $('#menu').hide(); 
 });
 $("#review").click(function() {
   $("#map").hide();
@@ -105,6 +107,7 @@ $("#review").click(function() {
 $("#makeGuess").click(function() {
   $("#map").show();
   $("#image").hide();
+  map.invalidateSize();
 });
 $("#guess").click(function() {
   if(marker === undefined) { return }
