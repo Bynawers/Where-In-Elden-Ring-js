@@ -10,14 +10,18 @@ var map = L.map('map', {
   preferCanvas: true
 });
 
+let layerName = "outterworld";
+
 let round;
 let accuracy;
 let liveRemaining;
 
 let goodPostition;
+let goodLayer;
 let nameLocation;
 let answerId;
 
+let isLeaderboardOpen = false;
 let mask = [];
 let isInside;
 let lockClick = false;
@@ -30,14 +34,13 @@ let polygon = undefined;
 
 let bounds = [[-3200,-3400], [3200,3400]];
 let image = L.imageOverlay('./assets/map.jpg', bounds).addTo(map);
+
+let underground = L.imageOverlay('./assets/underground.jpg', bounds);
+
 map.fitBounds(bounds);
 map.setView([0, 0], -3);
 
-$('#nameLocation').hide();
-$('#map').hide();
-$('#image').hide();
 $('#gameOver').hide();
-$('.ruban').hide();
 
 start();
 
@@ -96,6 +99,7 @@ function degrant_privileges() {
 
 $('#play').click(function() {
   $('.ruban').show();
+  $('.ruban').css("display", "flex");
   $('#image').show();
   $('#map').hide();
   $('#menu').hide(); 
@@ -115,6 +119,7 @@ $("#guess").click(function() {
   $("#review").hide();
   $("#next").show();
   $('#nameLocation').show();
+  $('#nameLocation').css("display", "flex");
   reveal();
 });
 $("#next").click(function() {
@@ -147,6 +152,12 @@ $("#next").mouseover(function() {
 $("#next").mouseout(function() {
   grant_privileges();
 });
+$("#underground").mouseover(function() {
+  degrant_privileges();
+});
+$("#underground").mouseout(function() {
+  grant_privileges();
+});
 
 $("#playAgain").click(function() {
   $("#gameOver").hide();
@@ -154,11 +165,61 @@ $("#playAgain").click(function() {
   $("#image").show();
   start();
 });
+$("#underground").click(function() {
 
+  if (lockClick === true){ return; }
+
+  map.setView([0, 0], -3);
+
+  if (layerName === "outterworld") {
+    $('#imageCave').css('opacity', '.9');
+    underground.addTo(map);
+    layerName = "underground";
+  }
+  else {
+    $('#imageCave').css('opacity', '.5');
+    map.removeLayer(underground);
+    layerName = "outterworld";
+  }
+
+  if (marker !== undefined) { 
+    map.removeLayer(marker); 
+    marker = undefined;
+    guessPosition = [];
+    $("#guess").css("background", "rgb(141, 141, 141)");
+    $("#guess").css("cursor", "not-allowed");
+  }
+});
+$("#leaderbord").click(function() {
+  if (isLeaderboardOpen === false) {
+    $("#leaderboardContainer").show();
+    $("#leaderboardContainer").css("display", "flex");
+    isLeaderboardOpen = true;
+  }
+  else {
+    $("#leaderboardContainer").hide();
+    isLeaderboardOpen = false;
+  }
+});
+
+// start
+
+leaderboardRanking();
+
+// back
 
 function reveal() {
 
-  map.setView(goodPostition, -.1);
+  if (layerName === "underground" && layerName !== goodLayer) {
+    map.removeLayer(marker);
+    marker = undefined;
+    guessPosition = [];
+    map.removeLayer(underground);
+    layerName === "outterworld";
+    $('#imageCave').css('opacity', '.5');
+  }
+
+  map.setView(goodPostition, -.5);
   lockClick = true;
 
   circle = L.circle(goodPostition, {
@@ -170,6 +231,7 @@ function reveal() {
 
   var d = map.distance(guessPosition, goodPostition);
   isInside = d < circle.getRadius();
+  isInside = isInside && (goodLayer === layerName)
 
   circle.setStyle({
     fillColor: isInside ? 'green' : '#f03',
@@ -197,47 +259,38 @@ async function start() {
 
   mask = new Array(dataList.list.length).fill(false);
 
-  round = 1;
+  round = 0;
   accuracy = 0;
   liveRemaining = 3;
 
-  $("#round").text("Round: "+round);
-  $("#accuracy").text("Accuracy: "+accuracy+"%");
-  $("#liveRemaining").text("Live Remaining: "+liveRemaining);
-  await randomize()
-  .then(result => {
-    $('#screen').css('opacity', '1');
-    $('#loading').css('opacity', '0');
-  })
-  .catch(err => { alert("error loading"); })
+  newRound();
 }
 
 async function newRound() {
 
   map.setView([0, 0], -3);
 
-  if (isInside === false) { liveRemaining-- }
-  if (liveRemaining === 0) { gameOver(); round--; }
-
-  accuracy = parseInt( ( (round - (3-liveRemaining)) / round) * 100);
   round++;
+  if (round !== 1){
+    if (isInside === false) { liveRemaining-- }
+    if (liveRemaining === 0) { gameOver(); round--; }
+    accuracy = parseInt( ( (round - (3-liveRemaining)) / round) * 100);
+    guessPosition = [];
 
-  guessPosition = [];
+    if (circle !== undefined) { map.removeLayer(circle); }
+    if (marker !== undefined) { map.removeLayer(marker); }
+    if (polygon !== undefined) { map.removeLayer(polygon); }
+  }
 
   $("#round").text("Round: "+round);
   $("#accuracy").text("Accuracy: "+accuracy+"%");
   $("#liveRemaining").text("Live Remaining: "+liveRemaining);
-
-  map.removeLayer(circle);
-  map.removeLayer(marker);
-  if (polygon !== undefined) { map.removeLayer(polygon); }
 
   marker = undefined;
 
   lockClick = false;
 
   loading();
-
   await randomize()
   .then(result => {
     $('#screen').css('opacity', '1');
@@ -280,6 +333,7 @@ async function randomize() {
   $("#nameLocation").text(dataList.list[answerId].name);
   goodPostition = dataList.list[answerId].coords;
   nameLocation = dataList.list[answerId].name;
+  goodLayer = dataList.list[answerId].layer;
 
   await sleep(200);
 }
@@ -307,3 +361,38 @@ map.on('keypress', function(e){
     window.prompt("Copy to clipboard: Ctrl+C, Enter", "["+lat+", "+lng+"]");
   }
   });
+
+
+async function getJSONleaderboard() {
+  return fetch('./exampleLeaderboard.json')
+      .then((response) => response.json())
+      .then((responseJson) => { return responseJson });
+  }
+function addRowLeaderboard(rank, name, round, accuracy) {
+  const div = document.createElement('div');
+  
+  div.innerHTML = `
+    <div class="leaderboardElement">
+      <div style="width: 50%;">
+      `+rank+` - `+name+`
+      </div>
+      <div style="width: 50%; display: flex; align-content: center; justify-content: flex-end">
+      `+round+` (`+accuracy+`%)
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('leaderboardContainer').appendChild(div);
+}
+
+async function leaderboardRanking() {
+
+  dataLeaderboard = await getJSONleaderboard();
+  
+  dataLeaderboard.list.sort((a, b) => ( parseInt(b.round) - parseInt(a.round)) || ( parseInt(b.accuracy) - parseInt(a.accuracy) ));
+
+  dataLeaderboard.list.map((item, index) => {
+    addRowLeaderboard(index+1, item.username, item.round, item.accuracy)
+  })
+
+}

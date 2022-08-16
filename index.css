@@ -132,26 +132,29 @@ span {
   opacity: .85;
   justify-content: space-evenly;
   align-items: center;
-  display: flex;
+  display: none;
 }
+
 
 .playContainer {
   width: 80%;
   height: 700px;
   border: 3px solid rgb(255, 255, 255);
   z-index: 1;
-  background-color: black;
+  display: flex;
 }
 
 #map {
   background-color: black;
   z-index: 9999;
+  display: none;
 }
 #image {
   z-index: 1;
   background-color: black;
-  display: none;
   opacity: 1;
+  position: relative;
+  display: none;
 
   -webkit-transition: opacity 0.3s ease-in-out;
   -moz-transition: opacity 0.3s ease-in-out;
@@ -160,7 +163,7 @@ span {
   transition: opacity 0.3s ease-in-out;
 }
 #logoName {
-  width: 50%;
+  width: 30%;
 }
 
 .bottomFlex {
@@ -173,7 +176,7 @@ span {
   width: 1500px;
   height: 75px;
   display: flex;
-  z-index: 9999;
+  z-index: 9990;
   position: absolute;
   margin-bottom: 1%;
   margin-left: 1%;
@@ -239,7 +242,7 @@ span {
 #nameLocation {
   background-color: black;
   color: white;
-  display: flex;
+  display: none;
   align-items: center;
   border-radius: 15px;
   padding: 0px 10px;
@@ -283,4 +286,40 @@ span {
   font-size: 1rem;
   margin-right: 5px;
   z-index: 9999;
+}
+#underground {
+  right: 0;
+  right: 2%;
+  bottom: 5%;
+  position: absolute;
+  font-size: 1rem;
+  margin-right: 5px;
+  height: 10%;
+  z-index: 9999;
+}
+#imageCave {
+  height: 100%;
+  width: 100%;
+  opacity: .5;
+}
+
+#leaderboardContainer {
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  right: 0;
+  color: white;
+  height: 100%;
+  opacity: 1;
+  width: 20%;
+  position: absolute;
+  font-size: 1rem;
+  background-color: black;
+}
+
+.leaderboardElement {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+  display: flex;
 }

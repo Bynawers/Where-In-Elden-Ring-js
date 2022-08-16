@@ -23,7 +23,7 @@
       </button>
     </div>
 
-    <div class="ruban" style="top: 0; left: 0; position: absolute">
+    <div id="topRuban" class="ruban" style="top: 0; left: 0; position: absolute">
       <span class="h3" id="round">Round: 1</span>
       <span class="h3" id="accuracy">Accuracy: 0%</span>
       <span class="h3" id="liveRemaining">Live Remaining : 3</span>
@@ -31,6 +31,10 @@
 
     <div id="map" class="playContainer">
       <span id="mousePosition">x: 0 y: 0</span>
+      <div id="underground">
+        <img src="./assets/cave.png" id="imageCave" alt="logo"/>
+      </div>
+      <div id="leaderbordContainer"></div>
       <div class="bottomFlex">
         <div id="bottomButtons">
           <button id="review" class="button">
@@ -52,6 +56,8 @@
 
     <div id="image" class="playContainer">
       <img src="./assets/screen/screen3.jpg" id="screen" alt="logo"/>
+      <div id="leaderboardContainer">
+      </div>
       <div class="bottomFlex">
         <div id="loadingContent">
           <img src="./assets/logo.png" id="loading" alt="logo"/>
@@ -87,7 +93,7 @@
     </div>
 
 
-    <div class="ruban" style="bottom: 0; left: 0; position: absolute">
+    <div id="bottomRuban" class="ruban" style="bottom: 0; left: 0; position: absolute">
       <span class="h4">inspired by where in warcraft</span>
     </div>
 

@@ -1,0 +1,34 @@
+{
+  "list": [
+    {
+      "username": "bynawers",
+      "round": 7,
+      "accuracy": 100
+    },
+    {
+      "username": "natew",
+      "round": 11,
+      "accuracy": 75
+    },
+    {
+      "username": "kemray",
+      "round": 3,
+      "accuracy": 0
+    },
+    {
+      "username": "vincent",
+      "round": 6,
+      "accuracy": 100
+    },
+    {
+      "username": "elia",
+      "round": 11,
+      "accuracy": 100
+    },
+    {
+      "username": "paulux",
+      "round": 6,
+      "accuracy": 75
+    }
+  ]
+}

@@ -3,37 +3,44 @@
     {
       "coords": [-1950, -1200],
       "img": "./assets/screen/screen1.jpg",
-      "name": "Necrolimbe"
+      "name": "Necrolimbe",
+      "layer": "outterworld"
     },
     {
       "coords": [-1250, -1770],
       "img": "./assets/screen/screen2.jpg",
-      "name": "Liurnia"
+      "name": "Liurnia",
+      "layer": "outterworld"
     },
     {
       "coords": [-234, -2867],
       "img": "./assets/screen/screen3.jpg",
-      "name": "Dragon de Liurnia"
+      "name": "Dragon de Liurnia",
+      "layer": "outterworld"
     },
     {
       "coords": [-1487, -1514],
       "img": "./assets/screen/screen4.jpg",
-      "name": "Divine Tower of Limgrave"
+      "name": "Divine Tower of Limgrave",
+      "layer": "outterworld"
     },
     {
       "coords": [-1603, -1474],
       "img": "./assets/screen/screen5.jpg",
-      "name": "Chateau de Voilorage"
+      "name": "Chateau de Voilorage",
+      "layer": "outterworld"
     },
     {
       "coords": [1304, -2391],
       "img": "./assets/screen/screen6.jpg",
-      "name": "Manoir du volcan"
+      "name": "Manoir du volcan",
+      "layer": "outterworld"
     },
     {
       "coords": [125, -2979],
       "img": "./assets/screen/screen7.jpg",
-      "name": "Liurnia"
+      "name": "Liurnia",
+      "layer": "outterworld"
     },
     {
       "coords": [-189, -2546],
@@ -43,17 +50,20 @@
     {
       "coords": [-993, -2830],
       "img": "./assets/screen/screen9.jpg",
-      "name": "Autel du clair de lune"
+      "name": "Autel du clair de lune",
+      "layer": "outterworld"
     },
     {
       "coords": [-1762, 390],
       "img": "./assets/screen/screen10.jpg",
-      "name": "Chateau de Redmane"
+      "name": "Chateau de Redmane",
+      "layer": "outterworld"
     },
     {
       "coords": [-1328, 404],
       "img": "./assets/screen/screen11.jpg",
-      "name": "Sellia Crytal Tunnel"
+      "name": "Sellia Crytal Tunnel",
+      "layer": "outterworld"
     }
   ]
 }
