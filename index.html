@@ -11,16 +11,41 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
 
-  <body>
+  <body class="noselect">
     <img src="./assets/wallpaper.jpg" id="background" alt="logo"/>
     <img src="./assets/wallpaperGameOver.jpg" id="backgroundGameOver" alt="logo"/>
 
     <div id="menu" class="menuContainer">
-      WHERE IN
-      <img src="./assets/logoName.png" id="logoName" alt="logo"/>
-      <button id="play" class="button">
-        <span class="h3">Play</span>
-      </button>
+      <div id="menuElementContainer">
+        <div id="mainMenu" class="center">
+          WHERE IN
+          <img src="./assets/logoName.png" id="logoName" alt="logo"/>
+          <button class="button" id="play">
+            <span class="h3">Play</span>
+          </button>
+          <button id="custom" class="button">
+            <span class="h3">Custom</span>
+          </button>
+          <button id="leaderboardBtn" class="button">
+            <span class="h3">Leaderboard</span>
+          </button>
+          <span id="credit">Created by <a href="https://github.com/Bynawers">Bynawers</a>, inspired by <a href="https://www.kruithne.net/where-in-warcraft/">Where in Warcraft</a></span>
+        </div>
+
+        <div id="customMenu" class="center">
+          CUSTOM
+          <button id="back" class="button">
+            <span class="h3">Back</span>
+          </button>
+        </div>
+
+        <div id="leaderboardMenu" class="center">
+          LEADERBOARD
+          <button id="back2" class="button">
+            <span class="h3">Back</span>
+          </button>
+        </div>
+      </div>
     </div>
 
     <div id="topRuban" class="ruban" style="top: 0; left: 0; position: absolute">
@@ -32,7 +57,7 @@
     <div id="map" class="playContainer">
       <span id="mousePosition">x: 0 y: 0</span>
       <div id="underground">
-        <img src="./assets/cave.png" id="imageCave" alt="logo"/>
+        <img src="./assets/nokron.jpg" id="imageUnderground" alt="logo"/>
       </div>
       <div id="leaderbordContainer"></div>
       <div class="bottomFlex">

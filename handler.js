@@ -56,7 +56,7 @@ function addMarker(e){
   marker = new L.marker(e.latlng).addTo(map);
   guessPosition = e.latlng;
 
-  $("#guess").css("background", "linear-gradient(0deg, rgba(72,62,228,1) 0%, rgba(0,212,255,1) 100%)");
+  $("#guess").css("background", "linear-gradient(0deg, rgba(203,181,129,1) 0%, rgba(231,188,88,1) 100%)");
   $("#guess").css("cursor", "pointer");
 };
 
@@ -102,8 +102,34 @@ $('#play').click(function() {
   $('.ruban').css("display", "flex");
   $('#image').show();
   $('#map').hide();
-  $('#menu').hide(); 
+  $('#menu').hide();
 });
+$('#custom').click(function() {
+  $('#customMenu').show();
+  $('#customMenu').css("display", "flex");
+  $('#mainMenu').hide();
+  $('#leaderboardMenu').hide();
+});
+$('#leaderboardBtn').click(function() {
+  $('#customMenu').hide();
+  $('#mainMenu').hide();
+  $('#leaderboardMenu').show();
+  $('#leaderboardMenu').css("display", "flex");
+});
+$('#back').click(function() {
+  backMenu();
+});
+$('#back2').click(function() {
+  backMenu();
+});
+
+function backMenu() {
+  $('#mainMenu').show();
+  $('#leaderboardMenu').hide();
+  $('#customMenu').hide();
+}
+
+
 $("#review").click(function() {
   $("#map").hide();
   $("#image").show();
@@ -131,7 +157,7 @@ $("#next").click(function() {
   $('#nameLocation').hide();
   $("#guess").css("background", "rgb(141, 141, 141)");
   $("#guess").css("cursor", "not-allowed");
-  newRound();
+  newRound(500);
 });
 
 $("#review").mouseover(function() {
@@ -172,12 +198,12 @@ $("#underground").click(function() {
   map.setView([0, 0], -3);
 
   if (layerName === "outterworld") {
-    $('#imageCave').css('opacity', '.9');
+    $("#imageUnderground").attr("src","./assets/outterworld.jpg");
     underground.addTo(map);
     layerName = "underground";
   }
   else {
-    $('#imageCave').css('opacity', '.5');
+    $("#imageUnderground").attr("src","./assets/nokron.jpg");
     map.removeLayer(underground);
     layerName = "outterworld";
   }
@@ -201,6 +227,7 @@ $("#leaderbord").click(function() {
     isLeaderboardOpen = false;
   }
 });
+
 
 // start
 
@@ -263,10 +290,10 @@ async function start() {
   accuracy = 0;
   liveRemaining = 3;
 
-  newRound();
+  newRound(500);
 }
 
-async function newRound() {
+async function newRound(ms) {
 
   map.setView([0, 0], -3);
 
@@ -291,7 +318,7 @@ async function newRound() {
   lockClick = false;
 
   loading();
-  await randomize()
+  await randomize(ms)
   .then(result => {
     $('#screen').css('opacity', '1');
     $('#loading').css('opacity', '0');
@@ -313,8 +340,8 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-async function randomize() {
-  await sleep(300);
+async function randomize(ms) {
+  await sleep((3/5)*ms);
   $('#screen').show();
 
   answerId = getRandomInt(dataList.list.length);
@@ -335,7 +362,7 @@ async function randomize() {
   nameLocation = dataList.list[answerId].name;
   goodLayer = dataList.list[answerId].layer;
 
-  await sleep(200);
+  await sleep((2/5)*ms);
 }
 
 function gameOver() {
