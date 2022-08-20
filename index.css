@@ -1,3 +1,5 @@
+@font-face { font-family: Mantinia; src: url('./assets/fonts/Mantinia\ Regular.otf'); } 
+
 body, html {
   height: 100%; 
   width: 100%;
@@ -38,6 +40,15 @@ span {
   color: #fff;
   font-size: 50px;
   font-weight: bold;
+}
+.eldenFont {
+  font-family: Mantinia; 
+  font-size: 80px; 
+  color: #beab7e
+}
+.hcustom {
+  font-size: 25px;
+  margin-bottom: 20px;
 }
 .h3 {
   font-size: 20px;
@@ -80,9 +91,9 @@ span {
   width: 40%; 
   height: 100%;
   background-color: black;
-  border: solid 5px;
-  border-color: white;
-  opacity: .8;
+  border: solid 2px;
+  border-color: #beab7e;
+  opacity: .9;
   padding-top: 3%;
   border-bottom: none;
   border-top: none;
@@ -183,7 +194,7 @@ span {
 .playContainer {
   width: 80%;
   height: 700px;
-  border: 3px solid rgb(255, 255, 255);
+  border: 1px solid #beab7e;
   z-index: 1;
   display: flex;
 }
@@ -241,14 +252,19 @@ span {
   transition: transform .2s;
 }
 .button:hover {
-  background: rgb(215, 192, 139);
-  background: linear-gradient(0deg, rgb(202, 193, 172) 0%, rgb(215, 207, 187) 100%);
   cursor: pointer;
   transform: scale(1.05);
 }
 #play {
   width: 200px;
   height: 150px;
+}
+#playCustom {
+  width: 10%;
+  height: 50px;
+  border-radius: 0px;
+  position: absolute;
+  bottom: 13%;
 }
 #guess {
   width: 200px;
@@ -282,7 +298,7 @@ span {
 #play {
   width: 50%;
   height: 50px;
-  margin-top: 20%;
+  margin-top: 10%;
   border-radius: 0px;
 }
 #custom {
@@ -296,6 +312,13 @@ span {
   height: 50px;
   margin-top: 5%;
   border-radius: 0px;
+}
+#multiplayer {
+  width: 50%;
+  height: 50px;
+  margin-top: 5%;
+  border-radius: 0px;
+  background:rgb(141, 141, 141)
 }
 #back {
   width: 10%;
@@ -311,6 +334,67 @@ span {
   bottom: 5%;
   border-radius: 0px;
 }
+.multiButton {
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  margin-bottom: 40px;
+}
+.multiButtonLeft {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: rgb(191, 184, 184);
+  transition: transform 0.2s;
+}
+.multiButtonCenter {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(191, 184, 184);
+  transition: transform 0.2s;
+}
+.multiButtonRight {
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: rgb(191, 184, 184);
+  transition: transform 0.2s;
+}
+.multiButtonSeparation {
+  background: black;
+  height: 100%;
+  width: 1px;
+}
+.multiButtonLeft:hover {
+  transform: scale(1.1);
+  transform: translate(0, -5px);
+}
+.multiButtonCenter:hover {
+  transform: scale(1.1);
+  transform: translate(0, -5px);
+}
+.multiButtonRight:hover {
+  transform: scale(1.1);
+  transform: translate(0, -5px);
+}
+.rangeInput {
+  margin-bottom: 40px;
+}
+
 
 #nameLocation {
   background-color: black;
@@ -341,7 +425,7 @@ span {
   flex-direction: column;
   width: 30%;
   height: 300px;
-  border: 3px solid rgb(255, 255, 255);
+  border: 3px solid #beab7e;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
@@ -371,9 +455,9 @@ span {
   height: 15%;
   width: 8%;
   z-index: 9999;
-  border: solid;
+  border: solid 2px;
   border-radius: 20px;
-  border-color: white;
+  border-color: #beab7e;
   transition: transform .2s;
 }
 #underground:hover {
@@ -393,7 +477,7 @@ span {
   color: white;
   height: 100%;
   opacity: 1;
-  width: 20%;
+  width: 50%;
   position: absolute;
   font-size: 1rem;
   background-color: black;
@@ -410,4 +494,16 @@ span {
   bottom: 20px; 
   font-size: 15px;
   font-weight: normal;
+}
+#email {
+  position: absolute; 
+  bottom: 45px; 
+  font-size: 15px;
+  font-weight: normal;
+}
+
+#leaderboardRender {
+  margin-top: 5%;
+  font-size: 20px;
+  width: 60%;
 }

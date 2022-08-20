@@ -18,29 +18,84 @@
     <div id="menu" class="menuContainer">
       <div id="menuElementContainer">
         <div id="mainMenu" class="center">
-          WHERE IN
+          <span class="eldenFont">Where iN</span>
           <img src="./assets/logoName.png" id="logoName" alt="logo"/>
           <button class="button" id="play">
             <span class="h3">Play</span>
           </button>
+          <button class="button" id="multiplayer">
+            <span class="h3">Multiplayer</span>
+          </button>
           <button id="custom" class="button">
-            <span class="h3">Custom</span>
+            <span class="h3">Custom game</span>
           </button>
           <button id="leaderboardBtn" class="button">
             <span class="h3">Leaderboard</span>
           </button>
+          <span id="email">Any suggest, report or feedback ? don't hesitate to send <a href = "mailto:bynawers.fratczak@gmail.com">email</a></span>
           <span id="credit">Created by <a href="https://github.com/Bynawers">Bynawers</a>, inspired by <a href="https://www.kruithne.net/where-in-warcraft/">Where in Warcraft</a></span>
         </div>
 
+        
         <div id="customMenu" class="center">
-          CUSTOM
+          <span class="eldenFont">Custom gamE</span>
+
+          <span style="margin-top: 50px;" class="hcustom">Global Difficulty</span>
+          <div class="multiButton">
+            <div id="customGlobalDifficultyEasy" class="multiButtonLeft">
+              <span class="h3">easy</span>
+            </div>
+            <div class="multiButtonSeparation"></div>
+            <div id="customGlobalDifficultyMedium" class="multiButtonCenter">
+              <span class="h3">medium</span>
+            </div>
+            <div class="multiButtonSeparation"></div>
+            <div id="customGlobalDifficultyHard" class="multiButtonRight">
+              <span class="h3">hard</span>
+            </div>
+          </div>
+
+          <span class="hcustom">Pictures</span>
+          <div class="multiButton">
+            <div id="customPicturesEasy" class="multiButtonLeft">
+              <span class="h3">easy</span>
+            </div>
+            <div class="multiButtonSeparation"></div>
+            <div id="customPicturesMedium" class="multiButtonCenter">
+              <span class="h3">medium</span>
+            </div>
+            <div class="multiButtonSeparation"></div>
+            <div id="customPicturesHard" class="multiButtonCenter">
+              <span class="h3">hard</span>
+            </div>
+            <div class="multiButtonSeparation"></div>
+            <div id="customPicturesRandom" class="multiButtonRight">
+              <span class="h3">random</span>
+            </div>
+          </div>
+
+          <span class="hcustom">Circle Radius</span>
+          <input type="range" min="10" max="100" class="rangeInput" style="width: 40%;"/>
+
+          <span class="hcustom">Time</span>
+          <input type="range" min="10" max="100" class="rangeInput" style="width: 40%;"/>
+
+          <span class="hcustom">Live</span>
+          <input type="range" min="0" max="10" class="rangeInput" style="width: 40%;"/>
+
+          <button id="playCustom" class="button">
+            <span class="h3">Play</span>
+          </button>
+
           <button id="back" class="button">
             <span class="h3">Back</span>
           </button>
         </div>
 
         <div id="leaderboardMenu" class="center">
-          LEADERBOARD
+          <span class="eldenFont">LeaderboarD</span>
+          <div id="leaderboardRender">
+          </div>
           <button id="back2" class="button">
             <span class="h3">Back</span>
           </button>
@@ -90,9 +145,6 @@
         <div id="bottomButtons" style="justify-content: space-between">
           <button id="makeGuess" class="button">
             <span class="h3">Make Guess</span>
-          </button>
-          <button id="leaderbord" class="button">
-            <span class="h3">Leaderbord</span>
           </button>
         </div>
       </div>

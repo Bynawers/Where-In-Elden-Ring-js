@@ -2,8 +2,8 @@ var map = L.map('map', {
   crs: L.CRS.Simple,
   smoothZoom: false,
   smoothZoomDelay: 10000,
-  minZoom: -10,
-  maxZoom: 4,
+  minZoom: -4,
+  maxZoom:.5,
   zoomSnap: 0,
   zoomControl: false,
   attributionControl: false,
@@ -11,6 +11,11 @@ var map = L.map('map', {
 });
 
 let layerName = "outterworld";
+
+let settingPictures = "random"
+let settingCircleRadius = 100;
+let settingTime = 0;
+let settingLive = 3;
 
 let round;
 let accuracy;
@@ -21,7 +26,6 @@ let goodLayer;
 let nameLocation;
 let answerId;
 
-let isLeaderboardOpen = false;
 let mask = [];
 let isInside;
 let lockClick = false;
@@ -97,12 +101,57 @@ function degrant_privileges() {
   if (map.tap) map.tap.disable();
 }
 
+$('#customGlobalDifficultyEasy').click(function() {
+  selectCustomDifficulty('#customGlobalDifficultyEasy');
+});
+$('#customGlobalDifficultyMedium').click(function() {
+  selectCustomDifficulty('#customGlobalDifficultyMedium');
+});
+$('#customGlobalDifficultyHard').click(function() {
+  selectCustomDifficulty('#customGlobalDifficultyHard');
+});
+function selectCustomDifficulty(name) {
+  $(name).css("background", "linear-gradient(0deg, rgb(144, 121, 69) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customGlobalDifficultyEasy") { $("#customGlobalDifficultyEasy").css("background", "rgb(191, 184, 184)"); }
+  if (name !== "#customGlobalDifficultyMedium") { $("#customGlobalDifficultyMedium").css("background", "rgb(191, 184, 184)"); }
+  if (name !== "#customGlobalDifficultyHard") { $("#customGlobalDifficultyHard").css("background", "rgb(191, 184, 184)"); }
+}
+
+$('#customPicturesEasy').click(function() {
+  selectCustomPicture('#customPicturesEasy');
+  settingPictures = "easy";
+});
+$('#customPicturesMedium').click(function() {
+  selectCustomPicture('#customPicturesMedium');
+  settingPictures = "medium";
+});
+$('#customPicturesHard').click(function() {
+  selectCustomPicture('#customPicturesHard');
+  settingPictures = "hard";
+});
+$('#customPicturesRandom').click(function() {
+  selectCustomPicture('#customPicturesRandom');
+  settingPictures = "random";
+});
+function selectCustomPicture(name) {
+  $(name).css("background", "linear-gradient(0deg, rgb(144, 121, 69) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customPicturesEasy") { $("#customPicturesEasy").css("background", "rgb(191, 184, 184)"); }
+  if (name !== "#customPicturesMedium") { $("#customPicturesMedium").css("background", "rgb(191, 184, 184)"); }
+  if (name !== "#customPicturesHard") { $("#customPicturesHard").css("background", "rgb(191, 184, 184)"); }
+  if (name !== "#customPicturesRandom") { $("#customPicturesRandom").css("background", "rgb(191, 184, 184)"); }
+}
+
+
 $('#play').click(function() {
   $('.ruban').show();
   $('.ruban').css("display", "flex");
   $('#image').show();
   $('#map').hide();
   $('#menu').hide();
+  settingPictures = "random"
+  settingCircleRadius = 100;
+  settingTime = 0;
+  settingLive = 3;
 });
 $('#custom').click(function() {
   $('#customMenu').show();
@@ -216,17 +265,6 @@ $("#underground").click(function() {
     $("#guess").css("cursor", "not-allowed");
   }
 });
-$("#leaderbord").click(function() {
-  if (isLeaderboardOpen === false) {
-    $("#leaderboardContainer").show();
-    $("#leaderboardContainer").css("display", "flex");
-    isLeaderboardOpen = true;
-  }
-  else {
-    $("#leaderboardContainer").hide();
-    isLeaderboardOpen = false;
-  }
-});
 
 
 // start
@@ -253,7 +291,7 @@ function reveal() {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
-    radius: 100
+    radius: settingCircleRadius
   }).addTo(map);
 
   var d = map.distance(guessPosition, goodPostition);
@@ -350,7 +388,6 @@ async function randomize(ms) {
 
     if (!mask.includes(false)) {
       mask = new Array(dataList.list.length).fill(false);
-      alert("reset")
     }
     answerId = getRandomInt(dataList.list.length);
   }
@@ -398,18 +435,22 @@ async function getJSONleaderboard() {
 function addRowLeaderboard(rank, name, round, accuracy) {
   const div = document.createElement('div');
   
+  let color = rank === 1 ? "gold" : rank === 2 ? "#c0c0c0" : rank === 3 ? "#cd7f32" : "white";
+  let size = rank === 1 || rank === 2 || rank === 3 ? "20px" : "15px";
+  let marginPodium = rank === 3 ? "10px" : "0px";
+
   div.innerHTML = `
     <div class="leaderboardElement">
-      <div style="width: 50%;">
+      <div style="width: 65%; color: `+color+`; font-size: `+size+`">
       `+rank+` - `+name+`
       </div>
-      <div style="width: 50%; display: flex; align-content: center; justify-content: flex-end">
+      <div style="width: 35%; display: flex; align-content: center; justify-content: flex-end; color: `+color+`; font-size: `+size+`; margin-bottom: `+marginPodium+`">
       `+round+` (`+accuracy+`%)
       </div>
     </div>
   `;
   
-  document.getElementById('leaderboardContainer').appendChild(div);
+  document.getElementById('leaderboardRender').appendChild(div);
 }
 
 async function leaderboardRanking() {
