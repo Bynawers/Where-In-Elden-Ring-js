@@ -48,7 +48,7 @@ span {
 }
 .hcustom {
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .h3 {
   font-size: 20px;
@@ -265,6 +265,8 @@ span {
   border-radius: 0px;
   position: absolute;
   bottom: 13%;
+  background:rgb(141, 141, 141);
+  cursor: not-allowed;
 }
 #guess {
   width: 200px;
@@ -338,7 +340,7 @@ span {
   display: flex;
   flex-direction: row;
   font-size: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .multiButtonLeft {
   padding: 10px;
@@ -349,7 +351,7 @@ span {
   align-items: center;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  background: rgb(191, 184, 184);
+  background: rgb(230, 213, 172);
   transition: transform 0.2s;
 }
 .multiButtonCenter {
@@ -359,7 +361,7 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(191, 184, 184);
+  background: rgb(230, 213, 172);
   transition: transform 0.2s;
 }
 .multiButtonRight {
@@ -371,7 +373,7 @@ span {
   align-items: center;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: rgb(191, 184, 184);
+  background: rgb(230, 213, 172);
   transition: transform 0.2s;
 }
 .multiButtonSeparation {
@@ -390,9 +392,6 @@ span {
 .multiButtonRight:hover {
   transform: scale(1.1);
   transform: translate(0, -5px);
-}
-.rangeInput {
-  margin-bottom: 40px;
 }
 
 

@@ -46,8 +46,6 @@ map.setView([0, 0], -3);
 
 $('#gameOver').hide();
 
-start();
-
 // Marker 
 map.on('click', addMarker);
 
@@ -103,18 +101,55 @@ function degrant_privileges() {
 
 $('#customGlobalDifficultyEasy').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyEasy');
+  selectCustomPicture('#customPicturesEasy');
+  selectCustomRadius('#customRadiusBig');
+  selectCustomTime('#customTimeEasy');
+  selectCustomLive('#customLiveEasy');
+  settingLive = 10;
+  settingTime = 60;
+  settingCircleRadius = 150;
+  settingPictures = "easy";
 });
 $('#customGlobalDifficultyMedium').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyMedium');
+  selectCustomPicture('#customPicturesMedium');
+  selectCustomRadius('#customRadiusMedium');
+  selectCustomTime('#customTimeMedium');
+  selectCustomLive('#customLiveMedium');
+  settingLive = 3;
+  settingTime = 30;
+  settingCircleRadius = 100;
+  settingPictures = "medium";
 });
 $('#customGlobalDifficultyHard').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyHard');
+  selectCustomPicture('#customPicturesHard');
+  selectCustomRadius('#customRadiusLow');
+  selectCustomTime('#customTimeHard');
+  selectCustomLive('#customLiveHard');
+  settingLive = 1;
+  settingTime = 15;
+  settingCircleRadius = 50;
+  settingPictures = "hard";
+});
+$('#customGlobalDifficultyDefault').click(function() {
+  selectCustomDifficulty('#customGlobalDifficultyDefault');
+  selectCustomPicture('#customPicturesRandom');
+  selectCustomRadius('#customRadiusMedium');
+  selectCustomLive('#customLiveMedium');
+  selectCustomTime('#customTimeNoTime');
+  settingTime = 0;
+  settingLive = 3;
+  settingCircleRadius = 100;
+  settingPictures = "random";
+
 });
 function selectCustomDifficulty(name) {
-  $(name).css("background", "linear-gradient(0deg, rgb(144, 121, 69) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customGlobalDifficultyEasy") { $("#customGlobalDifficultyEasy").css("background", "rgb(191, 184, 184)"); }
-  if (name !== "#customGlobalDifficultyMedium") { $("#customGlobalDifficultyMedium").css("background", "rgb(191, 184, 184)"); }
-  if (name !== "#customGlobalDifficultyHard") { $("#customGlobalDifficultyHard").css("background", "rgb(191, 184, 184)"); }
+  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customGlobalDifficultyEasy") { $("#customGlobalDifficultyEasy").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customGlobalDifficultyMedium") { $("#customGlobalDifficultyMedium").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customGlobalDifficultyHard") { $("#customGlobalDifficultyHard").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customGlobalDifficultyDefault") { $("#customGlobalDifficultyDefault").css("background", "rgb(230, 213, 172)"); }
 }
 
 $('#customPicturesEasy').click(function() {
@@ -134,12 +169,75 @@ $('#customPicturesRandom').click(function() {
   settingPictures = "random";
 });
 function selectCustomPicture(name) {
-  $(name).css("background", "linear-gradient(0deg, rgb(144, 121, 69) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customPicturesEasy") { $("#customPicturesEasy").css("background", "rgb(191, 184, 184)"); }
-  if (name !== "#customPicturesMedium") { $("#customPicturesMedium").css("background", "rgb(191, 184, 184)"); }
-  if (name !== "#customPicturesHard") { $("#customPicturesHard").css("background", "rgb(191, 184, 184)"); }
-  if (name !== "#customPicturesRandom") { $("#customPicturesRandom").css("background", "rgb(191, 184, 184)"); }
+  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customPicturesEasy") { $("#customPicturesEasy").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customPicturesMedium") { $("#customPicturesMedium").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customPicturesHard") { $("#customPicturesHard").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customPicturesRandom") { $("#customPicturesRandom").css("background", "rgb(230, 213, 172)"); }
 }
+
+$('#customRadiusBig').click(function() {
+  selectCustomRadius('#customRadiusBig');
+  settingCircleRadius = 150;
+});
+$('#customRadiusMedium').click(function() {
+  selectCustomRadius('#customRadiusMedium');
+  settingCircleRadius = 100;
+});
+$('#customRadiusLow').click(function() {
+  selectCustomRadius('#customRadiusLow');
+  settingCircleRadius = 50;
+});
+function selectCustomRadius(name) {
+  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customRadiusBig") { $("#customRadiusBig").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customRadiusMedium") { $("#customRadiusMedium").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customRadiusLow") { $("#customRadiusLow").css("background", "rgb(230, 213, 172)"); }
+}
+
+$('#customTimeNoTime').click(function() {
+  selectCustomTime('#customTimeNoTime');
+  settingTime = 0;
+});
+$('#customTimeEasy').click(function() {
+  selectCustomTime('#customTimeEasy');
+  settingTime = 60;
+});
+$('#customTimeMedium').click(function() {
+  selectCustomTime('#customTimeMedium');
+  settingTime = 30;
+});
+$('#customTimeHard').click(function() {
+  selectCustomTime('#customTimeHard');
+  settingTime = 15;
+});
+function selectCustomTime(name) {
+  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customTimeNoTime") { $("#customTimeNoTime").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customTimeEasy") { $("#customTimeEasy").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customTimeMedium") { $("#customTimeMedium").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customTimeHard") { $("#customTimeHard").css("background", "rgb(230, 213, 172)"); }
+}
+
+$('#customLiveEasy').click(function() {
+  selectCustomLive('#customLiveEasy');
+  settingLive = 10;
+});
+$('#customLiveMedium').click(function() {
+  selectCustomLive('#customLiveMedium');
+  settingLive = 3;
+});
+$('#customLiveHard').click(function() {
+  selectCustomLive('#customLiveHard');
+  settingLive = 1;
+});
+function selectCustomLive(name) {
+  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
+  if (name !== "#customLiveEasy") { $("#customLiveEasy").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customLiveMedium") { $("#customLiveMedium").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customLiveHard") { $("#customLiveHard").css("background", "rgb(230, 213, 172)"); }
+}
+
 
 
 $('#play').click(function() {
@@ -152,6 +250,7 @@ $('#play').click(function() {
   settingCircleRadius = 100;
   settingTime = 0;
   settingLive = 3;
+  start();
 });
 $('#custom').click(function() {
   $('#customMenu').show();
@@ -319,9 +418,7 @@ async function getJSON() {
 }
 async function start() {
   $("#backgroundGameOver").css("opacity","0");
-
-  dataList = await getJSON();
-
+  
   mask = new Array(dataList.list.length).fill(false);
 
   round = 0;
