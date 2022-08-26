@@ -12,15 +12,17 @@ var map = L.map('map', {
 
 let layerName = "outterworld";
 
-let settingPictures = "random"
 let settingCircleRadius = 100;
 let settingTime = 0;
 let settingLive = 3;
+
+let isGameOver = false;
 
 let round;
 let accuracy;
 let liveRemaining;
 
+let custom = false;
 let goodPostition;
 let goodLayer;
 let nameLocation;
@@ -101,79 +103,46 @@ function degrant_privileges() {
 
 $('#customGlobalDifficultyEasy').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyEasy');
-  selectCustomPicture('#customPicturesEasy');
   selectCustomRadius('#customRadiusBig');
   selectCustomTime('#customTimeEasy');
   selectCustomLive('#customLiveEasy');
   settingLive = 10;
   settingTime = 60;
   settingCircleRadius = 150;
-  settingPictures = "easy";
 });
 $('#customGlobalDifficultyMedium').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyMedium');
-  selectCustomPicture('#customPicturesMedium');
   selectCustomRadius('#customRadiusMedium');
   selectCustomTime('#customTimeMedium');
   selectCustomLive('#customLiveMedium');
   settingLive = 3;
   settingTime = 30;
   settingCircleRadius = 100;
-  settingPictures = "medium";
 });
 $('#customGlobalDifficultyHard').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyHard');
-  selectCustomPicture('#customPicturesHard');
   selectCustomRadius('#customRadiusLow');
   selectCustomTime('#customTimeHard');
   selectCustomLive('#customLiveHard');
   settingLive = 1;
-  settingTime = 15;
+  settingTime = 5;
   settingCircleRadius = 50;
-  settingPictures = "hard";
 });
 $('#customGlobalDifficultyDefault').click(function() {
   selectCustomDifficulty('#customGlobalDifficultyDefault');
-  selectCustomPicture('#customPicturesRandom');
   selectCustomRadius('#customRadiusMedium');
   selectCustomLive('#customLiveMedium');
   selectCustomTime('#customTimeNoTime');
   settingTime = 0;
   settingLive = 3;
   settingCircleRadius = 100;
-  settingPictures = "random";
-
 });
 function selectCustomDifficulty(name) {
   $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customGlobalDifficultyEasy") { $("#customGlobalDifficultyEasy").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customGlobalDifficultyMedium") { $("#customGlobalDifficultyMedium").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customGlobalDifficultyHard") { $("#customGlobalDifficultyHard").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customGlobalDifficultyDefault") { $("#customGlobalDifficultyDefault").css("background", "rgb(230, 213, 172)"); }
-}
-
-$('#customPicturesEasy').click(function() {
-  selectCustomPicture('#customPicturesEasy');
-  settingPictures = "easy";
-});
-$('#customPicturesMedium').click(function() {
-  selectCustomPicture('#customPicturesMedium');
-  settingPictures = "medium";
-});
-$('#customPicturesHard').click(function() {
-  selectCustomPicture('#customPicturesHard');
-  settingPictures = "hard";
-});
-$('#customPicturesRandom').click(function() {
-  selectCustomPicture('#customPicturesRandom');
-  settingPictures = "random";
-});
-function selectCustomPicture(name) {
-  $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customPicturesEasy") { $("#customPicturesEasy").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customPicturesMedium") { $("#customPicturesMedium").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customPicturesHard") { $("#customPicturesHard").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customPicturesRandom") { $("#customPicturesRandom").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customGlobalDifficultyEasy") { $("#customGlobalDifficultyEasy").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customGlobalDifficultyMedium") { $("#customGlobalDifficultyMedium").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customGlobalDifficultyHard") { $("#customGlobalDifficultyHard").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customGlobalDifficultyDefault") { $("#customGlobalDifficultyDefault").css("background", "rgb(203,181,129)"); }
 }
 
 $('#customRadiusBig').click(function() {
@@ -190,9 +159,9 @@ $('#customRadiusLow').click(function() {
 });
 function selectCustomRadius(name) {
   $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customRadiusBig") { $("#customRadiusBig").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customRadiusMedium") { $("#customRadiusMedium").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customRadiusLow") { $("#customRadiusLow").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customRadiusBig") { $("#customRadiusBig").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customRadiusMedium") { $("#customRadiusMedium").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customRadiusLow") { $("#customRadiusLow").css("background", "rgb(203,181,129)"); }
 }
 
 $('#customTimeNoTime').click(function() {
@@ -209,14 +178,14 @@ $('#customTimeMedium').click(function() {
 });
 $('#customTimeHard').click(function() {
   selectCustomTime('#customTimeHard');
-  settingTime = 15;
+  settingTime = 5;
 });
 function selectCustomTime(name) {
   $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customTimeNoTime") { $("#customTimeNoTime").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customTimeEasy") { $("#customTimeEasy").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customTimeMedium") { $("#customTimeMedium").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customTimeHard") { $("#customTimeHard").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customTimeNoTime") { $("#customTimeNoTime").css("background", "rgb(203,181,129)") }
+  if (name !== "#customTimeEasy") { $("#customTimeEasy").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customTimeMedium") { $("#customTimeMedium").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customTimeHard") { $("#customTimeHard").css("background", "rgb(203,181,129)"); }
 }
 
 $('#customLiveEasy').click(function() {
@@ -233,9 +202,9 @@ $('#customLiveHard').click(function() {
 });
 function selectCustomLive(name) {
   $(name).css("background", "linear-gradient(0deg, rgb(87, 72, 38) 0%, rgba(231,188,88,1) 100%)");
-  if (name !== "#customLiveEasy") { $("#customLiveEasy").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customLiveMedium") { $("#customLiveMedium").css("background", "rgb(230, 213, 172)"); }
-  if (name !== "#customLiveHard") { $("#customLiveHard").css("background", "rgb(230, 213, 172)"); }
+  if (name !== "#customLiveEasy") { $("#customLiveEasy").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customLiveMedium") { $("#customLiveMedium").css("background", "rgb(203,181,129)"); }
+  if (name !== "#customLiveHard") { $("#customLiveHard").css("background", "rgb(203,181,129)"); }
 }
 
 
@@ -246,13 +215,32 @@ $('#play').click(function() {
   $('#image').show();
   $('#map').hide();
   $('#menu').hide();
-  settingPictures = "random"
   settingCircleRadius = 100;
   settingTime = 0;
   settingLive = 3;
+  custom = false;
   start();
 });
+$('#playCustom').click(function() {
+  $('.ruban').show();
+  $('.ruban').css("display", "flex");
+  $('#image').show();
+  $('#map').hide();
+  $('#menu').hide();
+  custom = true;
+  start();
+});
+
 $('#custom').click(function() {
+  selectCustomDifficulty('#customGlobalDifficultyDefault');
+  selectCustomRadius('#customRadiusMedium');
+  selectCustomLive('#customLiveMedium');
+  selectCustomTime('#customTimeNoTime');
+  settingTime = 0;
+  settingLive = 3;
+  settingCircleRadius = 100;
+  settingPictures = "random";
+
   $('#customMenu').show();
   $('#customMenu').css("display", "flex");
   $('#mainMenu').hide();
@@ -271,29 +259,16 @@ $('#back2').click(function() {
   backMenu();
 });
 
-function backMenu() {
-  $('#mainMenu').show();
-  $('#leaderboardMenu').hide();
-  $('#customMenu').hide();
-}
-
-
 $("#review").click(function() {
   $("#map").hide();
   $("#image").show();
 });
 $("#makeGuess").click(function() {
-  $("#map").show();
-  $("#image").hide();
-  map.invalidateSize();
+  switchImageMap();
 });
 $("#guess").click(function() {
   if(marker === undefined) { return }
-  $("#guess").hide();
-  $("#review").hide();
-  $("#next").show();
-  $('#nameLocation').show();
-  $('#nameLocation').css("display", "flex");
+  if (settingTime > 0) { $(".timer").text("end"); }
   reveal();
 });
 $("#next").click(function() {
@@ -337,10 +312,14 @@ $("#playAgain").click(function() {
   $("#gameOver").hide();
   $('.gameOverContainer').css('opacity', '0');
   $("#image").show();
+
+  if (custom === true) {
+    
+  }
   start();
 });
-$("#underground").click(function() {
 
+$("#underground").click(function() {
   if (lockClick === true){ return; }
 
   map.setView([0, 0], -3);
@@ -364,7 +343,18 @@ $("#underground").click(function() {
     $("#guess").css("cursor", "not-allowed");
   }
 });
+// fonctionnal
 
+function backMenu() {
+  $('#mainMenu').show();
+  $('#leaderboardMenu').hide();
+  $('#customMenu').hide();
+}
+function switchImageMap() {
+  $("#map").show();
+  $("#image").hide();
+  map.invalidateSize();
+}
 
 // start
 
@@ -374,9 +364,19 @@ leaderboardRanking();
 
 function reveal() {
 
+  switchImageMap();
+
+  $("#guess").hide();
+  $("#review").hide();
+  $("#next").show();
+  $('#nameLocation').show();
+  $('#nameLocation').css("display", "flex");
+
   if (layerName === "underground" && layerName !== goodLayer) {
-    map.removeLayer(marker);
-    marker = undefined;
+    if (marker !== undefined) {
+      map.removeLayer(marker);
+      marker = undefined;
+    }
     guessPosition = [];
     map.removeLayer(underground);
     layerName === "outterworld";
@@ -393,50 +393,90 @@ function reveal() {
     radius: settingCircleRadius
   }).addTo(map);
 
-  var d = map.distance(guessPosition, goodPostition);
-  isInside = d < circle.getRadius();
-  isInside = isInside && (goodLayer === layerName)
+  if (guessPosition.length === 0) {
+    isInside = false;
+  }
+  else {
+    var d = map.distance(guessPosition, goodPostition);
+    isInside = d < circle.getRadius();
+    isInside = isInside && (goodLayer === layerName);
+
+    if (isInside === false) {
+      polygon = L.polygon([
+        goodPostition,
+        guessPosition
+      ]).addTo(map);
+      polygon.setStyle({color: 'red'});
+    }
+  }
 
   circle.setStyle({
     fillColor: isInside ? 'green' : '#f03',
     color: isInside ? 'green' : 'red'
   })
-
-  if (isInside === false) {
-    polygon = L.polygon([
-      goodPostition,
-      guessPosition
-    ]).addTo(map);
-    polygon.setStyle({color: 'red'});
-  }
 }
 
-async function getJSON() {
-  return fetch('./answersList.json')
+
+async function getJSON(name) {
+  return fetch(name)
       .then((response) => response.json())
       .then((responseJson) => { return responseJson });
 }
 async function start() {
   $("#backgroundGameOver").css("opacity","0");
+
+  dataList = await getJSON('./answersList.json');
+
+  isGameOver = false;
+  timer();
   
   mask = new Array(dataList.list.length).fill(false);
 
   round = 0;
   accuracy = 0;
-  liveRemaining = 3;
+  liveRemaining = settingLive;
 
-  newRound(500);
+  newRound(200);
 }
+async function setTimer(s) {
+  
+  while(s !== 0){
+    s--;
+    await sleep(1000);
+    let rightPrintTime = s < 10 ? "0" + s : s;
+    if (lockClick === false && isGameOver !== true) { $(".timer").text("0:"+rightPrintTime) }
+    else { return; }
+  }
+  $(".timer").text("end");
+  reveal();
+}
+function timer() {
+  if (settingTime !== 0) {
+    $("#timerOnImage").css("display","flex");
+    $("#timerOnMap").css("display","flex");
+    $(".timer").text("0:"+settingTime);
+    setTimer(settingTime);
+  }
+}
+
 
 async function newRound(ms) {
 
   map.setView([0, 0], -3);
 
+  timer();
+
   round++;
   if (round !== 1){
     if (isInside === false) { liveRemaining-- }
-    if (liveRemaining === 0) { gameOver(); round--; }
-    accuracy = parseInt( ( (round - (3-liveRemaining)) / round) * 100);
+    if (liveRemaining === 0) { 
+      round--; 
+      accuracy = parseInt( ( (round - (settingLive-liveRemaining)) / round) * 100);
+      gameOver(); 
+    }
+    else {
+      accuracy = parseInt( ( (round - (settingLive-liveRemaining)) / round) * 100);
+    }
     guessPosition = [];
 
     if (circle !== undefined) { map.removeLayer(circle); }
@@ -500,11 +540,13 @@ async function randomize(ms) {
 }
 
 function gameOver() {
+  isGameOver = true;
+
   $("#map").hide();
   $("#image").hide();
   $("#gameOver").show();
-  let roundsWrite = (3-round) === 0 ? "" : "s";
-  $("#gameOverRound").text("You successfully complete "+(round-3)+" round"+roundsWrite);
+  let roundsWrite = (settingLive-round) === 0 ? "" : "s";
+  $("#gameOverRound").text("You successfully complete "+(round-settingLive)+" round"+roundsWrite);
   $("#gameOverAccuracy").text("Your accuracy was "+accuracy+"%");
   $("#backgroundGameOver").css("opacity","1");
   $('.gameOverContainer').css('opacity', '1');
@@ -521,14 +563,10 @@ map.on('keypress', function(e){
   if (event.key === 'c') {
     window.prompt("Copy to clipboard: Ctrl+C, Enter", "["+lat+", "+lng+"]");
   }
-  });
+});
 
 
-async function getJSONleaderboard() {
-  return fetch('./exampleLeaderboard.json')
-      .then((response) => response.json())
-      .then((responseJson) => { return responseJson });
-  }
+
 function addRowLeaderboard(rank, name, round, accuracy) {
   const div = document.createElement('div');
   
@@ -546,16 +584,12 @@ function addRowLeaderboard(rank, name, round, accuracy) {
       </div>
     </div>
   `;
-  
   document.getElementById('leaderboardRender').appendChild(div);
 }
 
 async function leaderboardRanking() {
-
-  dataLeaderboard = await getJSONleaderboard();
-  
+  dataLeaderboard = await getJSON('./exampleLeaderboard.json');
   dataLeaderboard.list.sort((a, b) => ( parseInt(b.round) - parseInt(a.round)) || ( parseInt(b.accuracy) - parseInt(a.accuracy) ));
-
   dataLeaderboard.list.map((item, index) => {
     addRowLeaderboard(index+1, item.username, item.round, item.accuracy)
   })

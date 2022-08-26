@@ -4,66 +4,77 @@
       "coords": [-1950, -1200],
       "img": "./assets/screen/screen1.jpg",
       "name": "Necrolimbe",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "easy"
     },
     {
       "coords": [-1250, -1770],
       "img": "./assets/screen/screen2.jpg",
       "name": "Liurnia",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "easy"
     },
     {
       "coords": [-234, -2867],
       "img": "./assets/screen/screen3.jpg",
       "name": "Dragon de Liurnia",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "medium"
     },
     {
       "coords": [-1487, -1514],
       "img": "./assets/screen/screen4.jpg",
       "name": "Divine Tower of Limgrave",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "hard"
     },
     {
       "coords": [-1603, -1474],
       "img": "./assets/screen/screen5.jpg",
       "name": "Chateau de Voilorage",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "easy"
     },
     {
       "coords": [1304, -2391],
       "img": "./assets/screen/screen6.jpg",
       "name": "Manoir du volcan",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "easy"
     },
     {
       "coords": [125, -2979],
       "img": "./assets/screen/screen7.jpg",
       "name": "Liurnia",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "hard"
     },
     {
       "coords": [-189, -2546],
       "img": "./assets/screen/screen8.jpg",
-      "name": "Académie de Raya Lucaria"
+      "name": "Académie de Raya Lucaria",
+      "difficulty": "easy"
     },
     {
       "coords": [-993, -2830],
       "img": "./assets/screen/screen9.jpg",
       "name": "Autel du clair de lune",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "medium"
     },
     {
       "coords": [-1762, 390],
       "img": "./assets/screen/screen10.jpg",
       "name": "Chateau de Redmane",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "medium"
     },
     {
       "coords": [-1328, 404],
       "img": "./assets/screen/screen11.jpg",
       "name": "Sellia Crytal Tunnel",
-      "layer": "outterworld"
+      "layer": "outterworld",
+      "difficulty": "medium"
     }
   ]
 }
