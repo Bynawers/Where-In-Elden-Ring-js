@@ -216,6 +216,12 @@ span {
   transition: opacity 0.3s ease-in-out;
 }
 #logoName {
+  width: 70%;
+}
+#logoApp {
+  width: 90%;
+}
+#logoLine {
   width: 90%;
 }
 
