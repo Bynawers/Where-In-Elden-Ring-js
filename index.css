@@ -1,4 +1,5 @@
 @font-face { font-family: Mantinia; src: url('./assets/fonts/Mantinia\ Regular.otf'); } 
+@font-face { font-family: Garamond; src: url('./assets/fonts/AppleGaramond.ttf'); } 
 
 body, html {
   height: 100%; 
@@ -216,13 +217,13 @@ span {
   transition: opacity 0.3s ease-in-out;
 }
 #logoName {
-  width: 70%;
+  width: 65%;
 }
 #logoApp {
-  width: 90%;
+  width: 80%;
 }
 #logoLine {
-  width: 90%;
+  width: 50%;
 }
 
 .bottomFlex {
